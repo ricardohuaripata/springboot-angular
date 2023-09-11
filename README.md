@@ -1,6 +1,8 @@
 # CRUD con Spring Boot y Angular
 
-![](screenshots/employees.png)
-![](screenshots/create.png)
-![](screenshots/update.png)
+![](screenshots/login.png)
+![](screenshots/general.png)
+![](screenshots/add.png)
+![](screenshots/edit.png)
 ![](screenshots/delete.png)
+![](screenshots/search.png)
