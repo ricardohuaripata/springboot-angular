@@ -1,0 +1,26 @@
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row gy-3">
+        <h3 class="card-title text-center mb-4">LOGIN</h3>
+        <form class="form-container" [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Enter email</label>
+                <input type="text" formControlName="email" class="form-control" id="email">
+                <small class="text-danger" *ngIf="submittingForm && email?.hasError('required')">Email is required</small>
+                <small class="text-danger" *ngIf="submittingForm && email?.hasError('email')">
+                    Please, enter a valid email address
+                </small>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Enter password</label>
+                <input type="password" formControlName="password" class="form-control" id="password">
+                <small class="text-danger" *ngIf="submittingForm && password?.hasError('required')">Password is required</small>
+                <small class="text-danger" *ngIf="submittingForm && (password?.hasError('minlength') || password?.hasError('maxlength') )">
+                    Password must be 6 to 32 characters long
+                </small>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">LOGIN</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -3,6 +3,8 @@ import { Employee } from 'src/app/interfaces/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-employees',
@@ -14,22 +16,31 @@ export class EmployeesComponent implements OnInit {
   editEmployee: Employee | undefined;
   deleteEmployee: Employee | undefined;
 
-  constructor(private _employeeService: EmployeeService) {}
+  constructor(private _employeeService: EmployeeService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getEmployees();
   }
   // GET
   getEmployees(): void {
-    this._employeeService.getEmployees().subscribe((data: Employee[]) => {
-      this.employees = data;
-    });
+
+    this._employeeService.getEmployees().subscribe(
+      (data: any) => {
+        this.employees = data;
+      },
+      (error) => {
+        this.authService.logout();
+        this.router.navigateByUrl('/login');
+
+      }
+    );
+
+
   }
   // CREATE
   onAddEmployee(addForm: NgForm): void {
     if(!addForm.value.imageUrl) {
-      const randomNumber = Math.floor(Math.random() * 8) + 1;
-      addForm.value.imageUrl = "https://bootdey.com/webroot/img/Content/avatar/avatar" + randomNumber + ".png";
+      addForm.value.imageUrl = "https://img.freepik.com/iconos-gratis/usuario_318-159711.jpg?w=2000";
     }
     this._employeeService.addEmployee(addForm.value).subscribe({
       next: (response: Employee) => {

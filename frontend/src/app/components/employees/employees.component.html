@@ -1,11 +1,11 @@
+<app-navbar></app-navbar>
+
 <main class="container">
     <div class="bg-light p-5 rounded">
-        <h1>Employees Management</h1>
-        <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed libero sequi tempore
-            porro quam veritatis aliquam. Nihil iusto labore, aspernatur voluptas quis animi? Dolores,
-            libero! Rem ex quod saepe similique!</p>
+        <h1>Management</h1>
+        <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia placeat a quas dolor modi rem eos quae earum sunt autem iste obcaecati temporibus voluptates explicabo labore provident maiores, voluptatibus aperiam!</p>
 
-        <button class="btn btn-info text-white" (click)="onOpenModal('add')">Add Employee</button>
+        <button class="btn btn-primary" (click)="onOpenModal('add')">Add employee</button>
 
     </div>
 
@@ -21,8 +21,8 @@
                     <div class="card m-b-30">
                         <div class="card-body row">
                             <div class="col-4">
-                                <a href=""><img src="{{employee?.imageUrl}}" alt=""
-                                        class="img-fluid rounded-circle"></a>
+                                <img src="{{employee?.imageUrl}}" alt=""
+                                        class="img-fluid rounded-circle">
                             </div>
                             <div class="col-8 card-title align-self-center mb-0">
                                 <h5><strong>{{employee?.name}}</strong></h5>
@@ -34,12 +34,12 @@
                                 </strong>{{employee?.email}}</li>
                             <li class="list-group-item"><i class="fa fa-phone float-right"></i><strong>Phone: </strong>
                                 {{employee?.phone}}</li>
-                            <li class="list-group-item"><strong>E.Code: </strong>
+                            <li class="list-group-item"><strong>Employee code: </strong>
                                 {{employee?.employeeCode}}</li>
                         </ul>
                         <div class="card-body">
                             <div class="float-right btn-group btn-group-sm">
-                                <a (click)="onOpenModal('edit', employee)" class="btn btn-outline-info tooltips"
+                                <a (click)="onOpenModal('edit', employee)" class="btn btn-outline-primary tooltips"
                                     data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
                                 <a (click)="onOpenModal('delete', employee)" class="btn btn-outline-danger tooltips"
                                     data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
@@ -51,10 +51,6 @@
             </div>
         </div>
 
-        <div *ngIf="employees?.length == 0">
-            <p>No Employees were found...</p>
-        </div>
-
     </div>
 </main>
 
@@ -63,33 +59,33 @@
     <div class="modal-dialog d-flex align-items-center modal-dialog-centered" role="document">
       <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="addEmployeeModalLabel">Add Employee</h5>
+            <h5 class="modal-title" id="addEmployeeModalLabel">Add employee</h5>
          </div>
          <div class="modal-body">
             <form #addForm="ngForm">
             <div class="form-group mb-2">
-               <label for="name">Full name</label>
+               <label for="name">*Full name</label>
                <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Enter full name" required>
             </div>
             <div class="form-group mb-2">
-               <label for="email">Email address</label>
+               <label for="email">*Email address</label>
                <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Enter email address" required>
             </div>
             <div class="form-group mb-2">
-               <label for="phone">Job title</label>
+               <label for="phone">*Job title</label>
                <input type="text" ngModel name="jobTitle" class="form-control" id="jobTile" placeholder="Enter job title" required>
             </div>
             <div class="form-group mb-2">
-               <label for="phone">Phone number</label>
+               <label for="phone">*Phone number</label>
                <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Enter phone number" required>
             </div>
             <div class="form-group">
-               <label for="phone">(Optional)Image URL</label>
+               <label for="phone">Image URL</label>
                <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="https://example.com/image.png">
             </div>
             <div class="modal-footer">
                <button type="button" id="add-employee-form" data-dismiss="modal" class="btn btn-outline-danger">Close</button>
-               <button type="button" [disabled]="addForm.invalid" (click)="onAddEmployee(addForm)" data-dismiss="modal" class="btn btn-info text-white">Save changes</button>
+               <button type="button" [disabled]="addForm.invalid" (click)="onAddEmployee(addForm)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
             </div>
             </form>
          </div>
@@ -105,7 +101,7 @@
     <div class="modal-dialog d-flex align-items-center modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="updateEmployeeModalLabel">Edit Employee {{editEmployee?.name}}</h5>
+                <h5 class="modal-title" id="updateEmployeeModalLabel">Edit employee "{{editEmployee?.name}}"</h5>
             </div>
             <div class="modal-body">
                 <form #editForm="ngForm">
@@ -134,7 +130,7 @@
                     <div class="modal-footer">
                         <button type="button" id="" data-dismiss="modal" class="btn btn-outline-danger">Close</button>
                         <button type="button" (click)="onUpdateEmployee(editForm.value)" data-dismiss="modal"
-                            class="btn btn-info text-white">Save changes</button>
+                            class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -148,13 +144,13 @@
     <div class="modal-dialog d-flex align-items-center modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModelLabel">Delete Employee</h5>
+                <h5 class="modal-title" id="deleteModelLabel">Delete employee</h5>
             </div>
             <div class="modal-body">
                 <p>Are you sure you want to delete employee {{deleteEmployee?.name}}?</p>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info text-white" data-dismiss="modal">No</button>
-                    <button (click)="onDeleteEmployee(deleteEmployee?.id!)" class="btn btn-outline-danger"
+                    <button type="button" class="btn btn-primary text-white" data-dismiss="modal">No</button>
+                    <button (click)="onDeleteEmployee(deleteEmployee?.id!)" class="btn btn-danger"
                         data-dismiss="modal">Yes</button>
                 </div>
             </div>

@@ -1,0 +1,7 @@
+.container {
+  height: 100vh;
+  max-width: 450px;
+}
+.form-container {
+  min-width: 300px; /* Cambia este valor según tus necesidades */
+}

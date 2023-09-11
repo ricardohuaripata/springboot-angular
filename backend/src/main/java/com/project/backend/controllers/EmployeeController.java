@@ -18,7 +18,7 @@ import com.project.backend.models.Employee;
 import com.project.backend.services.EmployeeService;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
     
     private final EmployeeService employeeService;
